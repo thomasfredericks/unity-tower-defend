@@ -10,15 +10,30 @@ public class Enemy : MonoBehaviour
     // The speed of the enemy
     public float moveSpeed = 1f;
 
+    private float rotationSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        rotationSpeed = Random.Range(75,200 );
+        if ( Random.Range(0f,1f) >= 0.5f )
+        {
+            rotationSpeed = rotationSpeed * -1;
+        }
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Destroy(gameObject);
+    }
+    
+    
     // Update is called once per frame
     void Update()
     {
+
+        //transform.rotation = Quaternion.Euler(0, transform., 0);
+        transform.Rotate( new Vector3(0,0,rotationSpeed * Time.deltaTime ) );
         // 1. Check if the target exists
         if (target == null)
         {
