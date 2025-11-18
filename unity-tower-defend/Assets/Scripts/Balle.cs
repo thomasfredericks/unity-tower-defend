@@ -27,10 +27,11 @@ public class Balle : MonoBehaviour
     }
     
     // You might also want to destroy the bullet if it hits something
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D col)
     {
+        
         // Destroy the bullet upon impact
         Destroy(gameObject);
-        Destroy(collision.gameObject);
+
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -15,10 +16,40 @@ public class Player : MonoBehaviour
 
     float lastFireTime;
 
+    public Slider rotationSlider;
+
+
+   // This method is called by the Slider component when its value changes.
+    // The 'angle' parameter automatically receives the new value of the slider.
+    private void SetPlayerRotation(float angle)
+    {
+        // We create a new rotation (Quaternion) based on the input angle.
+        // For 2D, we rotate around the Z-axis.
+        
+        // Note: The input angle will be applied directly as the Z-axis angle.
+        Quaternion newRotation = Quaternion.Euler(0f, 0f, angle);
+
+        // Apply the rotation to the player's Transform
+        transform.rotation = newRotation;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        // 1. Check if the slider is assigned
+        if (rotationSlider != null)
+        {
+            // 2. Add a listener to the slider's OnValueChanged event
+            // This method will be called every time the slider's value changes
+            rotationSlider.onValueChanged.AddListener(SetPlayerRotation);
+            
+            // Optional: Initialize the player's rotation to the slider's initial value
+            SetPlayerRotation(rotationSlider.value); 
+        }
+        else
+        {
+            Debug.LogError("Rotation Slider not assigned in the Inspector!");
+        }
     }
 
     // Update is called once per frame
