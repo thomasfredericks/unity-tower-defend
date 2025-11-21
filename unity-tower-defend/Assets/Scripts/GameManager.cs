@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     float enemySpawnLastTime = 0f;
 
-    public Camera camera;
+    public Camera mainCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -27,14 +27,14 @@ public class GameManager : MonoBehaviour
         {
             enemySpawnLastTime = Time.time;
 
-            // Calculate the camera's boundaries in world coordinates
-            float cameraHeight = camera.orthographicSize * 2;
-            float cameraWidth = cameraHeight * camera.aspect;
+            // Calculate the mainCamera's boundaries in world coordinates
+            float cameraHeight = mainCamera.orthographicSize * 2;
+            float cameraWidth = cameraHeight * mainCamera.aspect;
 
-            float xMin = camera.transform.position.x - (cameraWidth / 2f);
-            float xMax = camera.transform.position.x + (cameraWidth / 2f);
-            float yMin = camera.transform.position.y - (cameraHeight / 2f);
-            float yMax = camera.transform.position.y + (cameraHeight / 2f);
+            float xMin = mainCamera.transform.position.x - (cameraWidth / 2f);
+            float xMax = mainCamera.transform.position.x + (cameraWidth / 2f);
+            float yMin = mainCamera.transform.position.y - (cameraHeight / 2f);
+            float yMax = mainCamera.transform.position.y + (cameraHeight / 2f);
 
             // Define how far outside the screen the enemy should spawn
             const float BufferDistance = 0f;
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 
             if (side == 0) // Left side
             {
-                // Fix X to the buffer edge, randomize Y within the camera's vertical range
+                // Fix X to the buffer edge, randomize Y within the mainCamera's vertical range
                 float randomY = Random.Range(yMin, yMax);
                 spawnPosition = new Vector3(spawnXMin, randomY, 0f);
             }
