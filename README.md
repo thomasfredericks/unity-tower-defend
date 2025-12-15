@@ -20,4 +20,4 @@ Exemple présenté dans le cours Objets interactifs.
 
 ### Instructions
 
-- Utiliser les touches ↑ et ↓ du clavier pour déplacer la palette de gauche.
+- Avec la souris, glisser la glissière pour faire tourner le canon et cliquer le bouton pour tirer.
