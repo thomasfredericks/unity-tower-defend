@@ -1,8 +1,6 @@
 {
     "recommendations": [
-        "pioarduino.pioarduino-ide",
-        "platformio.platformio-ide",
-        "visualstudiotoolsforunity.vstuc"
+        "pioarduino.pioarduino-ide"
     ],
     "unwantedRecommendations": [
         "ms-vscode.cpptools-extension-pack"
